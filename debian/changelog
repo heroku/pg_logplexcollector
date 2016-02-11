@@ -1,3 +1,9 @@
+pglogplexcollector (0.6ubuntu1) precise; urgency=medium
+
+  * Update for 9.5 compatibility
+
+ -- Greg Burek <gregburek@heroku.com>  Thu, 11 Feb 2016 23:35:45 +0000
+
 pglogplexcollector (0.5ubuntu1) precise; urgency=medium
 
   * Update for correct build golang sha1

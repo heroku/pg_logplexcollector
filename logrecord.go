@@ -6,7 +6,7 @@ import (
 	"fmt"
 	"io"
 
-	"github.com/deafbybeheading/femebe/buf"
+	"github.com/uhoh-itsmaciek/femebe/buf"
 )
 
 type logRecord struct {

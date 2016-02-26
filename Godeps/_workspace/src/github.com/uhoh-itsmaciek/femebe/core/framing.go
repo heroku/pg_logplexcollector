@@ -3,8 +3,9 @@ package core
 import (
 	"encoding/binary"
 	"errors"
-	"github.com/deafbybeheading/femebe/buf"
+	"github.com/uhoh-itsmaciek/femebe/buf"
 	"io"
+	"io/ioutil"
 )
 
 var ErrTooLarge = errors.New("Message buffering size limit exceeded")
@@ -39,6 +40,15 @@ func (m *Message) IsBuffered() bool {
 	return m.future == nil
 }
 
+func (m *Message) Discard() error {
+	if m.IsBuffered() {
+		return nil
+	}
+	_, err := io.Copy(ioutil.Discard, m.future)
+	m.future = nil
+	return err
+}
+
 func (m *Message) Force() ([]byte, error) {
 	if m.IsBuffered() {
 		return m.buffered.Bytes(), nil
@@ -46,17 +56,15 @@ func (m *Message) Force() ([]byte, error) {
 
 	payloadSz := m.Size() - 4
 	curBuf := m.buffered.Bytes()
-	var buf []byte
+	var payload []byte
 
-	if uint32(cap(curBuf)) < payloadSz {
-		buf = make([]byte, len(curBuf), payloadSz)
-		copy(buf, curBuf)
+	// Try to reuse the buffer if possible
+	if uint32(cap(curBuf)) >= payloadSz {
+		payload = curBuf[:payloadSz]
 	} else {
-		buf = curBuf
+		payload = make([]byte, payloadSz)
 	}
-
-	payload := buf[:payloadSz]
-	_, err := io.ReadFull(m.future, payload)
+	_, err := io.ReadFull(m.union, payload)
 
 	m.buffered.InitReader(payload)
 	m.future = nil

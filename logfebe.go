@@ -11,9 +11,9 @@ import (
 	"strings"
 	"time"
 
-	"github.com/deafbybeheading/femebe/buf"
-	"github.com/deafbybeheading/femebe/core"
 	"github.com/logplex/logplexc"
+	"github.com/uhoh-itsmaciek/femebe/buf"
+	"github.com/uhoh-itsmaciek/femebe/core"
 )
 
 // A function that, when called, panics.  The provider of the function

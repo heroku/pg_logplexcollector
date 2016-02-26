@@ -9,8 +9,8 @@ import (
 	"errors"
 	"testing"
 
-	"github.com/deafbybeheading/femebe/buf"
-	"github.com/deafbybeheading/femebe/core"
+	"github.com/uhoh-itsmaciek/femebe/buf"
+	"github.com/uhoh-itsmaciek/femebe/core"
 )
 
 var versionCheckTests = []struct {

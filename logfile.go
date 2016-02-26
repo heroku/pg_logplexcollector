@@ -10,7 +10,7 @@ import (
 	"regexp"
 	"time"
 
-	"github.com/go-fsnotify/fsnotify"
+	"github.com/fsnotify/fsnotify"
 	"github.com/logplex/logplexc"
 )
 

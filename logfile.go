@@ -47,7 +47,7 @@ func lineWorker(die dieCh, f *os.File, cfg logplexc.Config, sr *serveRecord) {
 						// Don't emit empty lines
 						l = bytes.TrimSpace(l)
 						if len(l) == 0 {
-							continue
+							break
 						}
 
 						// Append log prefix

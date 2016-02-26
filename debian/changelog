@@ -1,3 +1,9 @@
+pglogplexcollector (0.7ubuntu1) precise; urgency=medium
+
+  * Performance fix.
+
+ -- Timothée Peignier <tim@heroku.com>  Fri, 26 Feb 2016 17:04:25 +0000
+
 pglogplexcollector (0.6ubuntu1) precise; urgency=medium
 
   * Update for 9.5 compatibility
